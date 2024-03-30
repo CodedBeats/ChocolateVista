@@ -1,0 +1,46 @@
+.user-info {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10px 30px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "user-img-container email-container"
+        "user-img-container username-container"
+        "user-img-container password-container"
+        "update-container .";
+}
+
+.user-img-container {
+    justify-self: center;
+    align-self: center;
+    grid-area: user-img-container;
+}
+.user-img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.email-container {
+    justify-self: start;
+    align-self: center;
+    grid-area: email-container;
+}
+
+.username-container {
+    justify-self: start;
+    align-self: center;
+    grid-area: username-container;
+}
+
+.password-container {
+    justify-self: start;
+    align-self: center;
+    grid-area: password-container;
+}
+
+.update-container {
+    justify-self: center;
+    align-self: start;
+    grid-area: update-container;
+}

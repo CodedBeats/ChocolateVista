@@ -1,0 +1,37 @@
+.review-card-container {
+    width: 90%;
+    margin: 20px 20px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 7vw 5fr;
+    /* grid-template-rows: 1fr 5fr; */
+    gap: 10px 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "review-user-img review-title"
+        ". review-text";
+}
+
+.review-user-img-container {
+    grid-area: review-user-img;
+}
+.review-user-img {
+    justify-self: start;
+    align-self: center;
+    height: 7vh;
+}
+
+.review-title {
+    justify-self: start;
+    align-self: center;
+    grid-area: review-title;
+}
+
+.review-text {
+    justify-self: start;
+    align-self: start;
+    grid-area: review-text;
+}
+.delete-btn {
+    margin-left: 30px;
+}

@@ -1,0 +1,41 @@
+.carousel-section-container {
+    width: 100%;
+    height: 55vh;
+    overflow: hidden;
+    position: relative;
+}
+.chocolates-link-container {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F7E6D5;
+    border: solid black;
+    border-width: 2px 2px 0 2px;
+    border-radius: 20px 20px 0 0;
+    padding: 10px;
+    color: white;
+}
+.chocolates-link {
+    text-decoration: none;
+}
+.chocolates-link-text {
+    color: black;
+}
+
+.random-chocolates-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 20px 0;
+    font-size: 3em;
+    font-weight: bold;
+}
+.random-chocolates {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 3%;
+    margin-bottom: 30px;
+}

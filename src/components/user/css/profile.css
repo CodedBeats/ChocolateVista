@@ -1,0 +1,28 @@
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "user-info-container reviews-container"
+        "favorites-container reviews-container";
+}
+
+.reviews-container {
+    justify-self: center;
+    align-self: start;
+    grid-area: reviews-container;
+}
+
+.user-info-container {
+    justify-self: center;
+    align-self: center;
+    grid-area: user-info-container;
+}
+
+.favorites-container {
+    justify-self: center;
+    align-self: start;
+    grid-area: favorites-container;
+}

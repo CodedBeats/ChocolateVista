@@ -1,0 +1,52 @@
+.choc-container {
+    width: 80vw;
+    margin-left: 10vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr; */
+    gap: 20px 20px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "choc-img-container choc-details-container"
+        "additional-choc-details-container additional-choc-details-container";
+}
+
+
+.choc-img-container {
+    justify-self: end;
+    align-self: center;
+    grid-area: choc-img-container;
+    max-width: 70%;
+}
+.choc-img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+.choc-details-container {
+    justify-self: start;
+    align-self: center;
+    grid-area: choc-details-container;
+    max-width: 70%;
+}
+.choc-title-box, .choc-rating-box {
+    display: flex;
+}
+
+
+.details-and-reviews-container {
+    justify-self: start;
+    align-self: start;
+    grid-area: additional-choc-details-container;
+    border: 1px solid black;
+    min-width: 100%;
+}
+
+.additional-details-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.additional-details-container > div {
+    flex: 1 1 30%; /*grow | shrink | basis */
+}

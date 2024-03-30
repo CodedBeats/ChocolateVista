@@ -1,0 +1,14 @@
+.all-chocolates-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+    flex-wrap: wrap;
+    column-gap: 1%;
+    row-gap: 1em;
+}
+
+.chocolates-found {
+    margin-top: 30px;
+}

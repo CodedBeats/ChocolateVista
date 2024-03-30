@@ -1,0 +1,44 @@
+.navbar-container {
+    background-color: #007F7F;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img-link {
+    margin: 0 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+.logo-img {
+    margin-right: 5px;
+}
+.logo-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px;
+    color: black;
+}
+.logo-title:hover {
+    color: #FFD700;
+}
+
+.nav-link {
+    color: black !important;
+    margin-right: 15px;
+}
+.nav-link:hover {
+    color: #FFD700 !important;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn {
+    margin-left: 20px;
+}

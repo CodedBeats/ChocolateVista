@@ -1,0 +1,35 @@
+.search-container {
+    position: relative;
+    margin-right: 20px;
+}
+.search-wrapper {
+    position: relative;
+}
+
+.search-input {
+    padding-left: 30px !important; /* Increased padding to accommodate the icon */
+    border: 2px solid #FFD700;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 8px 12px;
+    outline: none;
+    width: 100%;
+}
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFD700;
+}
+
+.search-results {
+    position: absolute;
+    z-index: 2;
+}
+.search-results div {
+    background-color: rgb(170, 170, 170);
+}

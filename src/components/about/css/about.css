@@ -1,0 +1,35 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    gap: 50px 50px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "about-title about-title logo-container logo-container"
+        "about-text about-text logo-container logo-container";
+}
+
+.logo-container {
+    justify-self: center;
+    align-self: center;
+    grid-area: logo-container;
+}
+
+.about-title {
+    font-size: 4em;
+    font-weight: bold;
+    justify-self: center;
+    align-self: end;
+    grid-area: about-title;
+}
+
+.about-text {
+    justify-self: center;
+    align-self: start;
+    grid-area: about-text;
+}
+
+.logo-img {
+    max-width: 100%;
+    max-height: 100%;
+}
