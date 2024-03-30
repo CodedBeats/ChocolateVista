@@ -28,7 +28,7 @@ let RegisterForm = () => {
 
 
     const getUserData = () => {
-        fetch("http://localhost/chocolatevista_api/user/getUserByEmail.php", {
+        fetch("http://chocolatevistaapi.infinityfreeapp.com/user/getUserByEmail.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -72,7 +72,7 @@ let RegisterForm = () => {
 
         // console.log(formData); 
 
-        fetch("http://localhost/chocolatevista_api/auth/registerFormSubmit.php", {
+        fetch("http://chocolatevistaapi.infinityfreeapp.com/auth/registerFormSubmit.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

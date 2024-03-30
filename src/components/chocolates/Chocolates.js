@@ -28,7 +28,7 @@ let Chocolates = () => {
     const [weightVal, setWeightVal] = useState("");
     
     const { data: chocolatesData, isPending, error } = useFetch(
-        "http://localhost/chocolatevista_api/chocolate/getAllChocolates.php",
+        "http://chocolatevistaapi.infinityfreeapp.com/chocolate/getAllChocolates.php",
         "POST",
         filterValues
     );

@@ -30,7 +30,7 @@ let UserReviews = () => {
 
             try {
                 const response = await fetch(
-                    "http://localhost/chocolatevista_api/review/getUserReviews.php",
+                    "http://chocolatevistaapi.infinityfreeapp.com/review/getUserReviews.php",
                     {
                         method: "POST",
                         headers: {
@@ -72,7 +72,7 @@ let UserReviews = () => {
     }, [reviewUpdated, reviewRemoved]);
 
     const handleDelete = (reviewID) => {
-        fetch("http://localhost/chocolatevista_api/review/deleteReview.php", {
+        fetch("http://lchocolatevistaapi.infinityfreeapp.com/review/deleteReview.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
