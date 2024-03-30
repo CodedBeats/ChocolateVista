@@ -47,7 +47,7 @@ let Chocolate = () => {
 
             try {
                 const response = await fetch(
-                    "http://chocolatevistaapi.infinityfreeapp.com/chocolate/getChocolate.php",
+                    "https://chocolatevistaapi.infinityfreeapp.com/chocolate/getChocolate.php",
                     {
                         method: "POST",
                         headers: {

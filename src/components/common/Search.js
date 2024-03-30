@@ -27,7 +27,7 @@ const Search = () => {
         const newValue = e.target.value;
         setSearchQuery(newValue);
 
-        fetch("http://chocolatevistaapi.infinityfreeapp.com/chocolate/searchChocolate.php", {
+        fetch("https://chocolatevistaapi.infinityfreeapp.com/chocolate/searchChocolate.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

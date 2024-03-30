@@ -20,7 +20,7 @@ const StarRating = (props) => {
         console.log(`numRatigs:${props.numRatings}, rating:${props.rating}, ratingAvg:${ratingAvg}, newRating:${newRating}`)
 
         // update choc's rating
-        fetch("http://chocolatevistaapi.infinityfreeapp.com/chocolate/updateRating.php", {
+        fetch("https://chocolatevistaapi.infinityfreeapp.com/chocolate/updateRating.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

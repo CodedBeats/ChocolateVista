@@ -19,7 +19,7 @@ let Landing = () => {
     const [chocolates, setChocolates] = useState([]);
     
     const { data: chocolatesData, isPending, error } = useFetch(
-        "http://chocolatevistaapi.infinityfreeapp.com/chocolate/getRandom.php",
+        "https://chocolatevistaapi.infinityfreeapp.com/chocolate/getRandom.php",
         "POST"
     );
 

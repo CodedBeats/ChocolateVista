@@ -47,7 +47,7 @@ let UpdateUserInfo = (props) => {
 
         // ensure both passwords are the same before update
         if (formData.password === formData.confirmedPassword) {
-            fetch("http://chocolatevistaapi.infinityfreeapp.com/user/updateUser.php", {
+            fetch("https://chocolatevistaapi.infinityfreeapp.com/user/updateUser.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

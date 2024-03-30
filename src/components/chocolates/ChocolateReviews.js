@@ -37,7 +37,7 @@ const ChocolateReviews = (props) => {
 
             try {
                 const response = await fetch(
-                    "http://chocolatevistaapi.infinityfreeapp.com/review/getChocolateReviews.php",
+                    "https://chocolatevistaapi.infinityfreeapp.com/review/getChocolateReviews.php",
                     {
                         method: "POST",
                         headers: {
@@ -91,7 +91,7 @@ const ChocolateReviews = (props) => {
     };
 
     const handleReviewSubmit = () => {
-        fetch("http://chocolatevistaapi.infinityfreeapp.com/review/addReview.php", {
+        fetch("https://chocolatevistaapi.infinityfreeapp.com/review/addReview.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -117,7 +117,7 @@ const ChocolateReviews = (props) => {
     }
 
     const handleDelete = (reviewID) => {
-        fetch("http://chocolatevistaapi.infinityfreeapp.com/review/deleteReview.php", {
+        fetch("https://chocolatevistaapi.infinityfreeapp.com/review/deleteReview.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -147,7 +147,7 @@ const ChocolateReviews = (props) => {
     }
 
     const handleEditSubmit = () => {
-        fetch("http://chocolatevistaapi.infinityfreeapp.com/review/editReview.php", {
+        fetch("https://chocolatevistaapi.infinityfreeapp.com/review/editReview.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
