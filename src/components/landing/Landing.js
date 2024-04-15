@@ -19,7 +19,7 @@ let Landing = () => {
     const [chocolates, setChocolates] = useState([]);
     
     const { data: chocolatesData, isPending, error } = useFetch(
-        "https://chocolatevistaapi.infinityfreeapp.com/chocolate/getRandom.php",
+        "https://chocolate-vista.freewebhostmost.com/api/chocolate/getRandom.php",
         "POST"
     );
 
@@ -38,6 +38,7 @@ let Landing = () => {
 
     // Fetch random chocolates on load
     useEffect(() => {
+        console.log("log: " + chocolatesData);
         // Check if chocolatesData and chocolatesData.chocsData are not null/undefined
         if (chocolatesData && chocolatesData.chocsData) { 
             const fetchedChocolates = chocolatesData.chocsData.map(chocData => {

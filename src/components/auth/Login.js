@@ -28,7 +28,7 @@ let LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("https://chocolatevistaapi.infinityfreeapp.com/auth/loginFormSubmit.php", {
+        fetch("https://chocolate-vista.freewebhostmost.com/api/auth/loginFormSubmit.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
