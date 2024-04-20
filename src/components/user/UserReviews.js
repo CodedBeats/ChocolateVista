@@ -107,7 +107,9 @@ let UserReviews = () => {
                             <div className="user-review-card-link">
                                 <ReviewCard 
                                     review={review} 
-                                    canEdit={true} 
+                                    chocolateReviews={false}
+                                    canEdit={true}
+                                    canOnlyDelete={true}
                                     onClickDelete={(id) => handleDelete(id)} 
                                     isLinked={true}
                                     chocLink={currentReviewLink}

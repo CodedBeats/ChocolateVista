@@ -25,22 +25,34 @@ let ReviewCard = (props) => {
             </div>
             <div className="review-text">
                 <div>{props.review.text}</div>
-                {/* can only delete and edit if reviews was made by user */}
-                { props.canEdit &&
-                <div className="review-btns-sect">
-                    { props.chocolateReviews &&
-                        !props.currentlyEditing ?
-                        <button className="review-btn" onClick={() => props.onClickEdit(props.review.reviewID)}>
-                            <FontAwesomeIcon icon={faPencilAlt} />
-                        </button>
-                        :
-                        <div className="currently-editing">editing...</div>
-                    }
-                    <button className="review-btn" onClick={() => props.onClickDelete(props.review.reviewID)}>
-                        <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                </div>
-                }
+                {/* Display edit and delete buttons if user can edit */}
+                {props.canEdit && (
+                    <div className="review-btns-sect">
+                        {!props.canOnlyDelete ? 
+                            !props.currentlyEditing && props.chocolateReviews ? (
+                                <>
+                                <button className="review-btn" onClick={() => props.onClickEdit(props.review.reviewID)}>
+                                    <FontAwesomeIcon icon={faPencilAlt} />
+                                </button>
+                                <button className="review-btn" onClick={() => props.onClickDelete(props.review.reviewID)}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                                </>
+                            ) : (
+                                <>
+                                <div className="currently-editing">editing...</div>
+                                <button className="review-btn" onClick={() => props.onClickDelete(props.review.reviewID)}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                                </>
+                            ) 
+                        : 
+                            <button className="review-btn" onClick={() => props.onClickDelete(props.review.reviewID)}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                        }
+                    </div>
+                )}
             </div>
         </div>
     );

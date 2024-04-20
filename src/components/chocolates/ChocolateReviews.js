@@ -264,6 +264,7 @@ const ChocolateReviews = (props) => {
                             chocolateReviews={true}
                             currentlyEditing={currentlyEditing.includes(review.reviewID)}
                             canEdit={review.name === user.username ? true : false} 
+                            canOnlyDelete={false}
                             onClickEdit={(id) => handleEdit(id, review.text)} 
                             onClickDelete={(id) => handleDelete(id)} 
                         />
