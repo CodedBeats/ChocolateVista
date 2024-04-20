@@ -30,6 +30,7 @@ let RegisterForm = () => {
     });
 
     const handleChange = (e) => {
+        console.log(process.env.REACT_APP_BLACKLIST)
         const { name, value } = e.target;
         let filteredValue = value;
         
