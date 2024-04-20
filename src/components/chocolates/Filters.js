@@ -23,7 +23,7 @@ let Filters = ({ onFilterChange, numRatingsVal, setNumRatingsVal, priceVal, setP
     return (
         <div className="filters">
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle variant="success" id="dropdown-basic" className="filter-btn-dropdown">
                 Num of Ratings: <span dangerouslySetInnerHTML={{ __html: numRatingsVal && `&gt;${numRatingsVal}` }} />
                 </Dropdown.Toggle>
 
@@ -36,7 +36,7 @@ let Filters = ({ onFilterChange, numRatingsVal, setNumRatingsVal, priceVal, setP
             </Dropdown>
 
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle variant="success" id="dropdown-basic" className="filter-btn-dropdown">
                 Price: <span dangerouslySetInnerHTML={{ __html: priceVal && `&lt;${priceVal}` }} />
                 </Dropdown.Toggle>
 
@@ -49,7 +49,7 @@ let Filters = ({ onFilterChange, numRatingsVal, setNumRatingsVal, priceVal, setP
             </Dropdown>
 
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle variant="success" id="dropdown-basic" className="filter-btn-dropdown">
                 Weight: <span dangerouslySetInnerHTML={{ __html: weightVal && `&gt;${weightVal}` }} />
                 </Dropdown.Toggle>
 

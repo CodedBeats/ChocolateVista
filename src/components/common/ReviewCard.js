@@ -24,20 +24,19 @@ let ReviewCard = (props) => {
                 }
             </div>
             <div className="review-text">
-                {props.review.text}
-                {/* can only delete and edit if usernames match */}
+                <div>{props.review.text}</div>
+                {/* can only delete and edit if reviews was made by user */}
                 { props.canEdit &&
-                <div>
+                <div className="review-btns-sect">
                     { props.chocolateReviews &&
-                        <button className="delete-btn" onClick={() => props.onClickEdit(props.review.reviewID)}>
-                            { !props.currentlyEditing ?
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            :
-                                <div>editing...</div>
-                            }
+                        !props.currentlyEditing ?
+                        <button className="review-btn" onClick={() => props.onClickEdit(props.review.reviewID)}>
+                            <FontAwesomeIcon icon={faPencilAlt} />
                         </button>
+                        :
+                        <div className="currently-editing">editing...</div>
                     }
-                    <button className="delete-btn" onClick={() => props.onClickDelete(props.review.reviewID)}>
+                    <button className="review-btn" onClick={() => props.onClickDelete(props.review.reviewID)}>
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
                 </div>

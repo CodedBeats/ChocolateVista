@@ -1,8 +1,9 @@
 // dependencies
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 
 // components
+import UserContext from '../../UserContext';
 import ImageCarousel from "../common/ImageCarousel";
 import ChocCard from '../common/ChocCard';
 
@@ -15,11 +16,13 @@ import "../common/css/carousel.css";
 
 
 let Landing = () => {
+    const {userData: user} = useContext(UserContext);
     // choc obj and arr of chocs
     const [chocolates, setChocolates] = useState([]);
+    const [favorites, setFavorites] = useState({}); // state to store favorite status of each choc
     
     const { data: chocolatesData, isPending, error } = useFetch(
-        "https://chocolate-vista.freewebhostmost.com/api/chocolate/getRandom.php",
+        "http://localhost/chocolatevista_api/chocolate/getRandom.php",
         "POST"
     );
 
@@ -35,11 +38,9 @@ let Landing = () => {
         "/imgs/carousel/8.png", 
     ];
 
-
-    // Fetch random chocolates on load
+    // fetch random chocolates on load
     useEffect(() => {
-        console.log("log: " + chocolatesData);
-        // Check if chocolatesData and chocolatesData.chocsData are not null/undefined
+        // check if chocolatesData and chocolatesData.chocsData are not null/undefined
         if (chocolatesData && chocolatesData.chocsData) { 
             const fetchedChocolates = chocolatesData.chocsData.map(chocData => {
                 const [chocID, name, imgUrl, rating, numRatings] = chocData;
@@ -47,27 +48,50 @@ let Landing = () => {
             });
             // update the chocolates state with the fetched chocolates
             setChocolates(fetchedChocolates); 
+            
+            // check favorite status for each chocolate
+            fetchedChocolates.forEach(chocolate => {
+                fetch("http://localhost/chocolatevista_api/favourite/getIsUserFavourite.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ userID: user.userID, chocolateID: chocolate.chocID })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    setFavorites(prevFavorites => ({
+                        ...prevFavorites,
+                        // update favorites state with the result
+                        [chocolate.chocID]: data.success 
+                    }));
+                })
+                .catch(error => console.error("Error checking favorite status:", error));
+            });
         }
     }, [chocolatesData]);
-
 
     return (
         <div className="landing-page">
             <div className="carousel-section-container">
                 <ImageCarousel images={carouselImage} imageClass="landing-carousel-image" />
-                <div className="chocolates-link-container">
-                    <Link to="/chocolates" className="chocolates-link">
-                        <h4 className="chocolates-link-text">All Chocolates</h4>
-                    </Link>
-                </div>
+                <Link to="/chocolates" className="chocolates-link">
+                    <div className="chocolates-link-container">
+                            <h4 className="chocolates-link-text">All Chocolates</h4>
+                    </div>
+                </Link>
             </div>
 
             <div className="random-chocolates-container">
-                <div className="random-chocolates-title">Some Boxed Chocolates You Might Like</div>
+                <div className="random-chocolates-title">Some Chocolates You Might Like</div>
                 <div className="random-chocolates">
                     {chocolates.map((chocolate, index) => (
                         <div key={index}>
-                            <ChocCard chocID={chocolate} choc={chocolate} static={false} />
+                            <ChocCard 
+                                chocID={chocolate} 
+                                choc={chocolate} 
+                                isFavorited={favorites[chocolate.chocID]} 
+                            />
                         </div>
                     ))}
                 </div>

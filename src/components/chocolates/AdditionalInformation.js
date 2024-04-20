@@ -1,5 +1,8 @@
+// style
+import "./css/additional-information.css";
 
-const AdditionalInformation = (props) => {
+
+let AdditionalInformation = (props) => {
     // extract array type values
     const ingredientsArr = props.chocolate.ingredients.split(",");
     const flavorsArr = props.chocolate.flavors.split(",");
@@ -18,15 +21,24 @@ const AdditionalInformation = (props) => {
 
     return (
         <>
-        <div>Price: {props.chocolate.price}</div>
-        <div>Weight: {props.chocolate.weight}</div>
-        <div>Allergen Information: {props.chocolate.allergenInformation}</div>
-        <div>Ingredients: <ul>{listIngredients}</ul></div>
-        <div>Flavors: <ul>{listFlavors}</ul></div>
-        <div>Packaging: <ul>{listPackaging}</ul></div>
-        <div>Avg time until expiration: {props.chocolate.expirationTime}</div>
-        <div>Origin: {props.chocolate.origin}</div>
-        <div>Certifications: {props.chocolate.certifications}</div>
+        <div className="price-label additional-info-label">Price</div>
+        <div className="price-value">{props.chocolate.price}</div>
+        <div className="weight-label additional-info-label">Weight</div>
+        <div className="allergen-label additional-info-label">Allergen Information</div>
+        <div className="ingredients-label additional-info-label">Ingredients</div>
+        <div className="flavour-label additional-info-label">Flavours</div>
+        <div className="packaging-label additional-info-label">Packaging</div>
+        <div className="expiration-label additional-info-label">Avg time until expiration</div>
+        <div className="origin-label additional-info-label">Origin</div>
+        <div className="certifications-label additional-info-label">Certifications</div>
+        <div className="weight-value">{props.chocolate.weight}</div>
+        <div className="allergen-value">{props.chocolate.allergenInformation}</div>
+        <div className="ingredients-value"><ul className="additionsal-info-list">{listIngredients}</ul></div>
+        <div className="flavour-value"><ul className="additionsal-info-list">{listFlavors}</ul></div>
+        <div className="packaging-value"><ul className="additionsal-info-list">{listPackaging}</ul></div>
+        <div className="expiration-value">{props.chocolate.expirationTime}</div>
+        <div className="origin-value">{props.chocolate.origin}</div>
+        <div className="certifications-value">{props.chocolate.certifications}</div>
         </>
     );
 }

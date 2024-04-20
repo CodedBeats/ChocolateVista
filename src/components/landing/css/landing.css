@@ -1,6 +1,6 @@
 .carousel-section-container {
     width: 100%;
-    height: 55vh;
+    height: 43vh;
     overflow: hidden;
     position: relative;
 }
@@ -10,32 +10,39 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #F7E6D5;
+    background-color: #f7e6d5bd;
     border: solid black;
     border-width: 2px 2px 0 2px;
     border-radius: 20px 20px 0 0;
-    padding: 10px;
-    color: white;
+    padding: 15px 10px 10px 10px;
+    transition: 0.15s;
 }
-.chocolates-link {
-    text-decoration: none;
+.chocolates-link-container:hover {
+    background-color: #c08c59bd;
+    border: 5px solid rgb(29, 14, 0);
+    border-width: 2px 2px 0 2px;
+    border-radius: 20px 20px 0 0;
 }
 .chocolates-link-text {
-    color: black;
+    color: rgb(56, 27, 0);
+    font-weight: bold;
 }
 
 .random-chocolates-title {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px 0 20px 0;
+    margin: 20px 0;
     font-size: 3em;
     font-weight: bold;
+    color: rgb(56, 27, 0);
 }
 .random-chocolates {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    column-gap: 3%;
+    gap: 2%;
     margin-bottom: 30px;
+    width: 100%;
 }

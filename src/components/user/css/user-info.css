@@ -1,16 +1,16 @@
 .user-info {
     display: grid;
     grid-template-columns: 3fr 4fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 2fr 1fr;
     gap: 10px 30px;
     grid-auto-flow: row;
     grid-template-areas:
         "user-img-container email-container"
         "user-img-container username-container"
-        "user-img-container password-container"
-        "update-container .";
+        "user-info-btns user-info-btns";
 }
 
+/* img */
 .user-img-container {
     justify-self: center;
     align-self: center;
@@ -21,26 +21,35 @@
     max-height: 100%;
 }
 
+/* info containers */
 .email-container {
     justify-self: start;
     align-self: center;
     grid-area: email-container;
 }
-
 .username-container {
     justify-self: start;
-    align-self: center;
+    align-self: start;
     grid-area: username-container;
 }
 
-.password-container {
-    justify-self: start;
-    align-self: center;
-    grid-area: password-container;
+/* labels and text */
+.user-info-label {
+    font-weight: bold;
+}
+.user-info-text {
+    font-size: 1.2em;
 }
 
-.update-container {
-    justify-self: center;
-    align-self: start;
-    grid-area: update-container;
+/* buttons */
+.user-info-btns {
+    grid-area: user-info-btns;
+    display: flex;
+    justify-content: start;
+    column-gap: 15px;
+    width: 100%;
+}
+.user-info-btn {
+    padding: 0 10px !important;
+    max-height: 70%;
 }

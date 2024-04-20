@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 
 let ImageCarousel = (props) => {
     return (
-        <Carousel fade controls={false} indicators={false} interval={2000}>
+        <Carousel fade controls={false} indicators={false} interval={5000}>
             {props.images.map((image, index) => (
             <Carousel.Item>
                 <div key={index}>

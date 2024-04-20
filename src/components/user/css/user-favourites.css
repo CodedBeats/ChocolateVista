@@ -1,0 +1,24 @@
+.user-favourites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* container */
+.favourites-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    column-gap: 3%;
+    row-gap: 1em;
+}
+
+/* title */
+.user-favourites-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

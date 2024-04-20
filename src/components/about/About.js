@@ -8,9 +8,9 @@ import "./css/about.css";
 let About = () => {
 
     return (
-        <div className="container">
-            <div className="logo-container">
-                <Image src="/imgs/logo.png" className="logo-img" rounded />
+        <div className="about-container">
+            <div className="about-logo-container">
+                <Image src="/imgs/logo.png" className="about-logo-img" rounded />
             </div>
             <div className="about-title">ChocolateVista</div>
             <div className="about-text">

@@ -5,6 +5,9 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "react-bootstrap";
 
+// components
+import CustomToast from "../common/CustomToast";
+
 // style
 import "./css/star-rating.css";
 
@@ -20,7 +23,7 @@ const StarRating = (props) => {
         console.log(`numRatigs:${props.numRatings}, rating:${props.rating}, ratingAvg:${ratingAvg}, newRating:${newRating}`)
 
         // update choc's rating
-        fetch("https://chocolate-vista.freewebhostmost.com/api/chocolate/updateRating.php", {
+        fetch("http://localhost/chocolatevista_api/chocolate/updateRating.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -37,6 +40,9 @@ const StarRating = (props) => {
                 // update rating on front end to update display
                 setNumRatingsInstance(parseInt(numRatingsInstance) + parseInt(1));
                 setRatingInstance(parseInt(props.rating) + parseInt(value));
+
+                // notify user rating updated
+                CustomToast("Rating Updated", "success");
             })
             .catch((error) => {
                 console.error("Error:", error);

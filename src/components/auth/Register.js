@@ -1,10 +1,16 @@
 // dependencies
 import { useState, useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 // components
 import UserContext from '../../UserContext';
+import CustomToast from "../common/CustomToast";
+
+// style
+import "./css/register.css";
 
 
 let RegisterForm = () => {
@@ -17,18 +23,49 @@ let RegisterForm = () => {
         username: "",
         password: "",
     });
+    const [errors, setErrors] = useState({
+        email: "",
+        username: "",
+        password: "",
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        let filteredValue = value;
+        
+        // get blacklist from .env, this way you don't have to see the words :)
+        const blacklist = process.env.REACT_APP_BLACKLIST.split(',');
+    
+        // check if input value contains any word from blacklist
+        blacklist.forEach((badWord) => {
+            // regex to match bad word globally
+            const regex = new RegExp(badWord.trim(), 'gi');
+            filteredValue = filteredValue.replace(regex, "");
+        });
+        
         setFormData((prevState) => ({
             ...prevState,
-            [name]: value,
+            [name]: filteredValue,
+        }));
+        
+        // clear error message when user starts typing
+        setErrors(prevState => ({
+            ...prevState,
+            [name]: ""
+        }));
+
+        // set random avatar img
+        const randomAvatar = `/imgs/user/${Math.floor(Math.random() * 12) + 1}.png`;
+        setFormData(prevState => ({
+            ...prevState,
+            imgUrl: randomAvatar
         }));
     };
 
 
+    // login user
     const getUserData = () => {
-        fetch("https://chocolate-vista.freewebhostmost.com/api/user/getUserByEmail.php", {
+        fetch("http://localhost/chocolatevista_api/user/getUserByEmail.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -49,7 +86,7 @@ let RegisterForm = () => {
                     isLoggedIn: true,
                 });
 
-                // navigate to home (or maybe last page)
+                // navigate home
                 navigate("/");
             } else {
                 console.log(data.message);
@@ -63,16 +100,30 @@ let RegisterForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // set random avatar img
-        const randomAvatar = `/imgs/user/${Math.floor(Math.random() * 12) + 1}.png`;
-        setFormData(prevState => ({
-            ...prevState,
-            imgUrl: randomAvatar
-        }));
+        let formValid = true;
+        const newErrors = {};
 
-        // console.log(formData); 
+        // check if form fields are empty
+        if (formData.email === "") {
+            newErrors.email = "Please fill out this field";
+            formValid = false;
+        }
+        if (formData.username === "") {
+            newErrors.username = "Please fill out this field";
+            formValid = false;
+        }
+        if (formData.password === "") {
+            newErrors.password = "Please fill out this field";
+            formValid = false;
+        }
 
-        fetch("https://chocolate-vista.freewebhostmost.com/api/auth/registerFormSubmit.php", {
+        // if any field is empty, set errors and return
+        if (!formValid) {
+            setErrors(newErrors);
+            return;
+        }
+
+        fetch("http://localhost/chocolatevista_api/auth/registerFormSubmit.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -85,8 +136,11 @@ let RegisterForm = () => {
                 console.log("Register successful");
                 // console.log(data.userData);
 
-                // get user data for context and route somewhere
+                // get user data for context
                 getUserData();
+
+                // toast alert successful register
+                CustomToast("Account Created Successfully", "success");
             } else {
                 console.log(data.message);
             }
@@ -98,53 +152,68 @@ let RegisterForm = () => {
 
 
     return (
-        <>
-        <Form>
-            <Form.Group controlId="email">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter email"
-                />
-            </Form.Group>
+        <div className="register-page-container">
+            <div className="register-form-container">
+                <span className="register-title">Register</span>
+                <Form className="form-wrapper">
+                    <Form.Group controlId="email">
+                        <div className="form-input-container">
+                            <Form.Control
+                                className="form-input"
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="Enter email"
+                            />
+                            <FontAwesomeIcon icon={faEnvelope} />
+                        </div>
+                        {errors.email && <Form.Text className="text-danger">{errors.email}</Form.Text>}
+                    </Form.Group>
 
-            <Form.Group controlId="username">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    placeholder="Enter your username"
-                />
-            </Form.Group>
+                    <Form.Group controlId="username">
+                        <div className="form-input-container">
+                            <Form.Control
+                                className="form-input"
+                                type="text"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange}
+                                placeholder="Enter your username"
+                            />
+                            <span><FontAwesomeIcon icon={faUser}/></span>
+                        </div>
+                        {errors.username && <Form.Text className="text-danger">{errors.username}</Form.Text>}
+                    </Form.Group>
 
-            <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Password"
-                />
-            </Form.Group>
-        </Form>
+                    <Form.Group controlId="password">
+                        <div className="form-input-container">
+                            <Form.Control
+                                className="form-input"
+                                type="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Password"
+                            />
+                            <span><FontAwesomeIcon icon={faLock}/></span>
+                        </div>
+                        {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
+                    </Form.Group>
+                </Form>
 
-        <Button variant="primary" type="button" onClick={handleSubmit}>
-            REGISTER
-        </Button>
+                <button type="button" className="login-btn" onClick={handleSubmit}>
+                    Register
+                </button>
 
-        <div>
-            Already have an account? 
-            <Link to="/login">
-                <Button variant="outline-success">Login</Button>
-            </Link>
+                <div>
+                    Already have an account? 
+                    <Link to="/login" className="register-link">
+                        <span>Login</span>
+                    </Link>
+                </div>
+            </div>
         </div>
-        </>
     );
 }
 

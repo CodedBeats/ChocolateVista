@@ -1,29 +1,31 @@
-.choc-container {
+.chocolcate-container {
     width: 80vw;
-    margin-left: 10vw;
+    margin: 4vh 10vw;
+}
+.chocolate-img-container-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* grid-template-rows: 1fr 1fr; */
-    gap: 20px 20px;
+    grid-template-rows: 1fr;
+    gap: 0 20px;
     grid-auto-flow: row;
-    grid-template-areas:
-        "choc-img-container choc-details-container"
-        "additional-choc-details-container additional-choc-details-container";
+    grid-template-areas: "choc-img-container choc-details-container";
+    margin-bottom: 3vh;
 }
 
 
-.choc-img-container {
+/* img */
+.chocolate-img-container {
     justify-self: end;
     align-self: center;
     grid-area: choc-img-container;
-    max-width: 70%;
+    border: solid 2px black;
+    background-color: white;
 }
-.choc-img {
-    max-height: 100%;
-    max-width: 100%;
+.chocolate-img {
+    max-height: 350px;
 }
 
-
+/* details */
 .choc-details-container {
     justify-self: start;
     align-self: center;
@@ -32,21 +34,48 @@
 }
 .choc-title-box, .choc-rating-box {
     display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.choc-title-name {
+    font-size: 3em;
+    font-weight: bold;
+}
+.chocolate-favourite-icon {
+    margin-left: 30px;
+    font-size: 3em;
+}
+.chocolate-favourite-icon button {
+    background-color: transparent;
+    border: none;
+}
+.choc-title-description {
+    margin-top: 20px !important;
+    font-size: 2em;
 }
 
 
+/* additional details */
 .details-and-reviews-container {
     justify-self: start;
     align-self: start;
     grid-area: additional-choc-details-container;
     border: 1px solid black;
+    border-radius: 0 0 10px 10px;
     min-width: 100%;
+    background-color: rgb(66, 66, 66);
+    overflow: hidden;
 }
-
-.additional-details-container {
-    display: flex;
-    flex-wrap: wrap;
+.chocolate-details-tab {
+    height: 45px;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: rgb(66, 66, 66);
+    border: none;
+    border-right: 1px solid black;
 }
-.additional-details-container > div {
-    flex: 1 1 30%; /*grow | shrink | basis */
+.additional-details-reviews-container {
+    background-color: white;
 }

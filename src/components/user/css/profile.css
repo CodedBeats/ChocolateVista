@@ -1,28 +1,38 @@
 .profile-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0px 0px;
+    grid-template-columns: 1fr 2fr;
+    /* grid-template-rows: 1fr 1fr; */
+    gap: 2% 2%;
     grid-auto-flow: row;
     grid-template-areas:
-        "user-info-container reviews-container"
-        "favorites-container reviews-container";
+        "user-info-container favorites-container"
+        "reviews-container favorites-container";
+    margin: 40px;
 }
 
-.reviews-container {
-    justify-self: center;
-    align-self: start;
-    grid-area: reviews-container;
+/* card */
+.profile-card {
+    padding: 15px;
+    background-color: rgb(236, 216, 195);
+    border-radius: 10px;
+    /* right down blur size */
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.671);
 }
-
 .user-info-container {
     justify-self: center;
     align-self: center;
     grid-area: user-info-container;
+    width: 100%;
 }
-
+.reviews-container {
+    justify-self: center;
+    align-self: start;
+    grid-area: reviews-container;
+    width: 100%;
+}
 .favorites-container {
     justify-self: center;
     align-self: start;
     grid-area: favorites-container;
+    width: 100%;
 }

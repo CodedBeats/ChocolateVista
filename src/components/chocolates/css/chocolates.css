@@ -1,14 +1,63 @@
+/* container */
+.chocolates-page-container {
+    margin-top: 80px;
+}
 .all-chocolates-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    margin: 30px 0;
+}
+
+/* filters */
+.filters-container-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    gap: 10px 30px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "filters-container-title filters-container reset-filters-btn"
+        "filters-container-title chocolates-found reset-filters-btn";
+    margin: 0 20%;
+    padding: 0.5% 2%;
+    background-color: #eec092;
+    border-radius: 20px;
+}
+.chocolates-found {
+    justify-self: center;
+    align-self: center;
+    grid-area: chocolates-found;
+}
+.filters-container-title {
+    justify-self: start;
+    align-self: center;
+    grid-area: filters-container-title;
+    font-size: 1.5em;
+    font-weight: bold;
+    
+}
+.reset-filters-btn {
+    justify-self: end;
+    align-self: center;
+    grid-area: reset-filters-btn;
+    width: 50%;
+    
+}
+.filters-container {
+    justify-self: center;
+    align-self: center;
+    grid-area: filters-container;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* text */
+.no-chocolates-found-txt {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    width: 100%;
-    flex-wrap: wrap;
-    column-gap: 1%;
-    row-gap: 1em;
-}
-
-.chocolates-found {
-    margin-top: 30px;
+    margin-top: 20px;
 }

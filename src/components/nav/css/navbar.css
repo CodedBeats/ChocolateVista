@@ -1,44 +1,97 @@
+/* general navbar */
 .navbar-container {
     background-color: #007F7F;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 8px 10px !important;
+    height: 8vh;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.nav-right {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
-
-.logo-img-link {
-    margin: 0 15px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    color: black;
-}
-.logo-img {
-    margin-right: 5px;
-}
-.logo-title {
-    font-size: 1.3em;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 8px;
-    color: black;
-}
-.logo-title:hover {
-    color: #FFD700;
-}
-
 .nav-link {
     color: black !important;
     margin-right: 15px;
+}
+.navbar-nav > .nav-link {
+    font-size: 1.2em;
 }
 .nav-link:hover {
     color: #FFD700 !important;
 }
 
-.nav-right {
+
+/* logo */
+.logo-img-link {
+    margin: 0;
+    text-decoration: none;
     display: flex;
     align-items: center;
+    color: black;
+    padding: 8px;
+}
+.logo-img {
+    margin-right: 5px;
+}
+.logo-title {
+    font-size: 1.7em;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    padding-left: 10px;
+}
+.logo-title:hover {
+    color: #FFD700;
 }
 
+
+/* search */
+.navbar-search-container {
+    /* allow Search to take remaining space...it's being finiky so this is a weird fix */
+    flex: 10000; 
+    justify-content: center;
+    display: flex;
+}
+.search-container {
+    width: 50%;
+}
+
+
+/* dropdown */
+.navbar-dropdown {
+    margin-right: 0;
+}
+.navbar-dropdown-link {
+    text-decoration: none;
+    color: black;
+}
+.navbar-dropdown-link-text {
+    margin-left: 10px;
+}
+
+
+/* some override styles */
+.nav-dropdown-btn {
+    border: none !important;
+    padding: 0 !important;
+}
+.nav-dropdown-btn::after {
+    border: none !important;
+}
+.nav-dropdown-btn:focus {
+    border: none !important;
+}
+.nav-dropdown-btn:active {
+    border: none !important;
+}
+
+
+/* logout */
 .logout-btn {
     margin-left: 20px;
 }

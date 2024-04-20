@@ -1,0 +1,86 @@
+/* general */
+p {
+    margin: 0 !important;
+}
+
+/* page */
+.register-page-container {
+    height: 92vh;
+    background: url("../../../../public/imgs/auth/login_background.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* form */
+.form-wrapper {
+    width: 100% !important;
+}
+.register-form-container {
+    background: rgba(255, 255, 255, 0.148);
+    border: 2px solid rgba(0, 0, 0, 0.572);
+    backdrop-filter: blur(12px);
+    color: #000000;
+    border-radius: 12px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 22vw;
+}
+
+/* titles */
+.register-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+/* inputs */
+.form-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 30px;
+    margin: 20px 0 0 0;
+    padding: 10px 20px;
+}
+
+/* buttons */
+.register-btn {
+    margin: 25px 0 10px 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #000000;
+    color: white;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+.register-btn:hover {
+    background-color: rgb(29, 29, 29);
+}
+
+/* links */
+.login-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* override bootstrap styles */
+.form-input {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+.form-control:focus {
+    border-color: inherit !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
