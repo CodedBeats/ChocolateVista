@@ -24,7 +24,7 @@ let UserInfo = () => {
 
         // If the user confirms, proceed with the deletion
         if (isConfirmed) {
-            fetch("http://localhost/chocolatevista_api/auth/deleteUser.php", {
+            fetch("https://chocolate-vista.freewebhostmost.com/api/auth/deleteUser.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

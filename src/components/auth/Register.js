@@ -65,7 +65,7 @@ let RegisterForm = () => {
 
     // login user
     const getUserData = () => {
-        fetch("http://localhost/chocolatevista_api/user/getUserByEmail.php", {
+        fetch("https://chocolate-vista.freewebhostmost.com/api/user/getUserByEmail.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -123,7 +123,7 @@ let RegisterForm = () => {
             return;
         }
 
-        fetch("http://localhost/chocolatevista_api/auth/registerFormSubmit.php", {
+        fetch("https://chocolate-vista.freewebhostmost.com/api/auth/registerFormSubmit.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

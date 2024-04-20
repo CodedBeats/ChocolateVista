@@ -22,7 +22,7 @@ let Landing = () => {
     const [favorites, setFavorites] = useState({}); // state to store favorite status of each choc
     
     const { data: chocolatesData, isPending, error } = useFetch(
-        "http://localhost/chocolatevista_api/chocolate/getRandom.php",
+        "https://chocolate-vista.freewebhostmost.com/api/chocolate/getRandom.php",
         "POST"
     );
 
@@ -51,7 +51,7 @@ let Landing = () => {
             
             // check favorite status for each chocolate
             fetchedChocolates.forEach(chocolate => {
-                fetch("http://localhost/chocolatevista_api/favourite/getIsUserFavourite.php", {
+                fetch("https://chocolate-vista.freewebhostmost.com/api/favourite/getIsUserFavourite.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

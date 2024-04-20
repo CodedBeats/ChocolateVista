@@ -31,7 +31,7 @@ let Chocolates = () => {
     const [weightVal, setWeightVal] = useState("");
     
     const { data: chocolatesData, isPending, error } = useFetch(
-        "http://localhost/chocolatevista_api/chocolate/getAllChocolates.php",
+        "https://chocolate-vista.freewebhostmost.com/api/chocolate/getAllChocolates.php",
         "POST",
         filterValues
     );
@@ -69,7 +69,7 @@ let Chocolates = () => {
 
                 // check favorite status for each chocolate
                 fetchedChocolates.forEach(chocolate => {
-                    fetch("http://localhost/chocolatevista_api/favourite/getIsUserFavourite.php", {
+                    fetch("https://chocolate-vista.freewebhostmost.com/api/favourite/getIsUserFavourite.php", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"

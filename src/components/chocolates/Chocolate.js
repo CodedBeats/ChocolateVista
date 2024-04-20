@@ -57,7 +57,7 @@ let Chocolate = () => {
 
             try {
                 const response = await fetch(
-                    "http://localhost/chocolatevista_api/chocolate/getChocolate.php",
+                    "https://chocolate-vista.freewebhostmost.com/api/chocolate/getChocolate.php",
                     {
                         method: "POST",
                         headers: {
@@ -110,7 +110,7 @@ let Chocolate = () => {
                 });
 
                 // check if chocolate is favorited
-                const isFavResponse = await fetch("http://localhost/chocolatevista_api/favourite/getIsUserFavourite.php", {
+                const isFavResponse = await fetch("https://chocolate-vista.freewebhostmost.com/api/favourite/getIsUserFavourite.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

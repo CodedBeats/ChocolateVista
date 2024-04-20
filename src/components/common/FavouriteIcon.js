@@ -23,12 +23,12 @@ const FavouriteIcon = (props) => {
     const toggleFavorite = () => {
         let url = "";
         if (isFavorited) {
-            url = "http://localhost/chocolatevista_api/favourite/deleteFavourite.php";
+            url = "https://chocolate-vista.freewebhostmost.com/api/favourite/deleteFavourite.php";
             setNotifyMessage(isFavorited ? "Favourite Added" : "Favourite Removed");
         }
         else if (isFavorited == false && isFavorited != null) {
             console.log(isFavorited)
-            url = "http://localhost/chocolatevista_api/favourite/addFavourite.php";
+            url = "https://chocolate-vista.freewebhostmost.com/api/favourite/addFavourite.php";
             setNotifyMessage(isFavorited ? "Favourite Added" : "Favourite Removed");
         }
 

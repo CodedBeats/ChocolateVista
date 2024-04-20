@@ -27,7 +27,7 @@ let UserFavourites = () => {
 
             try {
                 const response = await fetch(
-                    "http://localhost/chocolatevista_api/favourite/getUserFavourites.php",
+                    "https://chocolate-vista.freewebhostmost.com/api/favourite/getUserFavourites.php",
                     {
                         method: "POST",
                         headers: {
@@ -55,7 +55,7 @@ let UserFavourites = () => {
             
                     // check favorite status for each chocolate
                     fetchedChocolates.forEach(chocolate => {
-                        fetch("http://localhost/chocolatevista_api/favourite/getIsUserFavourite.php", {
+                        fetch("https://chocolate-vista.freewebhostmost.com/api/favourite/getIsUserFavourite.php", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
