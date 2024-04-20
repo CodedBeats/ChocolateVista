@@ -30,13 +30,11 @@ let RegisterForm = () => {
     });
 
     const handleChange = (e) => {
-        console.log(process.env.REACT_APP_BLACKLIST)
         const { name, value } = e.target;
         let filteredValue = value;
         
         // get blacklist from .env, this way you don't have to see the words :)
         const blacklist = process.env.REACT_APP_BLACKLIST.split(',');
-        console.log(blacklist)
     
         // check if input value contains any word from blacklist
         blacklist.forEach((badWord) => {
