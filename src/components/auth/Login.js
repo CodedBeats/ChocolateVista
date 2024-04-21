@@ -2,20 +2,19 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 // components
-import UserContext from '../../UserContext';
+import UserContext from "../../UserContext";
 import CustomToast from "../common/CustomToast";
 
 // styles
 import "./css/login.css";
 
-
 let LoginForm = () => {
     const navigate = useNavigate();
-    const {setUserData} = useContext(UserContext);
+    const { setUserData } = useContext(UserContext);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -33,12 +32,11 @@ let LoginForm = () => {
             [name]: value,
         }));
         // clear error message when user starts typing
-        setErrors(prevState => ({
+        setErrors((prevState) => ({
             ...prevState,
-            [name]: ""
+            [name]: "",
         }));
     };
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,45 +60,47 @@ let LoginForm = () => {
             return;
         }
 
-        fetch("https://chocolate-vista.freewebhostmost.com/api/auth/loginFormSubmit.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                console.log("Login successful");
-                // console.log(data.userData);
-
-                // set user data for context
-                setUserData({
-                    userID: data.userData[0],
-                    imgUrl: data.userData[1],
-                    email: data.userData[2],
-                    username: data.userData[3],
-                    isLoggedIn: true,
-                });
-
-                // navigate to home (or maybe last page)
-                navigate("/");
-
-                // toast alert successful login
-                CustomToast("Login Successful", "success");
-            } else {
-                console.log(data.message);
-
-                // toast alert failed login
-                CustomToast(data.message, "warning");
+        fetch(
+            "https://chocolate-vista.freewebhostmost.com/api/auth/loginFormSubmit.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
             }
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-    };
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    console.log("Login successful");
+                    // console.log(data.userData);
 
+                    // set user data for context
+                    setUserData({
+                        userID: data.userData[0],
+                        imgUrl: data.userData[1],
+                        email: data.userData[2],
+                        username: data.userData[3],
+                        isLoggedIn: true,
+                    });
+
+                    // navigate to home (or maybe last page)
+                    navigate("/");
+
+                    // toast alert successful login
+                    CustomToast("Login Successful", "success");
+                } else {
+                    console.log(data.message);
+
+                    // toast alert failed login
+                    CustomToast(data.message, "warning");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    };
 
     return (
         <div className="login-page-container">
@@ -119,7 +119,11 @@ let LoginForm = () => {
                             />
                             <FontAwesomeIcon icon={faEnvelope} />
                         </div>
-                        {errors.email && <Form.Text className="text-danger">{errors.email}</Form.Text>}
+                        {errors.email && (
+                            <Form.Text className="text-danger">
+                                {errors.email}
+                            </Form.Text>
+                        )}
                     </Form.Group>
 
                     <Form.Group controlId="password">
@@ -132,18 +136,28 @@ let LoginForm = () => {
                                 onChange={handleChange}
                                 placeholder="Password"
                             />
-                            <span><FontAwesomeIcon icon={faLock}/></span>
+                            <span>
+                                <FontAwesomeIcon icon={faLock} />
+                            </span>
                         </div>
-                        {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
+                        {errors.password && (
+                            <Form.Text className="text-danger">
+                                {errors.password}
+                            </Form.Text>
+                        )}
                     </Form.Group>
                 </Form>
 
-                <button type="button" className="login-btn" onClick={handleSubmit}>
+                <button
+                    type="button"
+                    className="login-btn"
+                    onClick={handleSubmit}
+                >
                     Login
                 </button>
 
                 <div>
-                    Don't have an account? 
+                    Don't have an account?
                     <Link to="/register" className="register-link">
                         <span>Register</span>
                     </Link>
@@ -151,6 +165,6 @@ let LoginForm = () => {
             </div>
         </div>
     );
-}
+};
 
 export default LoginForm;

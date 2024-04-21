@@ -53,7 +53,7 @@ const NavbarComponent = () => {
                 <Search />
             </Nav>
             <Navbar.Collapse id="basic-navbar-nav" className="nav-right">
-                <Nav>
+                <Nav className="sidebar">
                     <Link to="/chocolates" className="nav-link">
                         Chocolates
                     </Link>

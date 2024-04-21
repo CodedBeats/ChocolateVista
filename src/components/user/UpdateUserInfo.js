@@ -7,13 +7,13 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 
 // components
-import UserContext from '../../UserContext';
+import UserContext from "../../UserContext";
 
 // style
 import CustomToast from "../common/CustomToast";
 
 let UpdateUserInfo = (props) => {
-    const {userData, setUserData} = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
     const [formData, setFormData] = useState({
         email: "",
         username: "",
@@ -28,42 +28,41 @@ let UpdateUserInfo = (props) => {
         confirmPassword: "",
     });
 
-
     const handleFormChange = (e) => {
         const { name, value } = e.target;
         let filteredValue = value;
-        
+
         // get blacklist from .env, this way you don't have to see the words :)
-        const blacklist = process.env.REACT_APP_BLACKLIST.split(',');
-    
+        const blacklist = process.env.REACT_APP_BLACKLIST.split(",");
+
         // check if input value contains any word from blacklist
         blacklist.forEach((badWord) => {
             // regex to match bad word globally
-            const regex = new RegExp(badWord.trim(), 'gi');
+            const regex = new RegExp(badWord.trim(), "gi");
             filteredValue = filteredValue.replace(regex, "");
         });
-        
+
         setFormData((prevState) => ({
             ...prevState,
             [name]: filteredValue,
         }));
         // clear error message when user starts typing
-        setErrors(prevState => ({
+        setErrors((prevState) => ({
             ...prevState,
-            [name]: ""
+            [name]: "",
         }));
     };
 
     const handleCheckChange = (setStateFunction) => {
         if (setStateFunction === "username") {
-            setUsernameIsLocked(prevState => !prevState)
+            setUsernameIsLocked((prevState) => !prevState);
             // clear text feild when enabling or disabling input group
             setFormData({
                 email: formData.email,
                 username: "",
                 password: formData.password,
                 confirmPassword: formData.confirmPassword,
-            })
+            });
             // clear all errors when enabling or disabling input group
             setErrors({
                 username: "",
@@ -72,14 +71,14 @@ let UpdateUserInfo = (props) => {
             });
         }
         if (setStateFunction === "password") {
-            setPasswordIsLocked(prevState => !prevState)
+            setPasswordIsLocked((prevState) => !prevState);
             // clear text feilds when enabling or disabling input group
             setFormData({
                 email: formData.email,
                 username: formData.username,
                 password: "",
                 confirmPassword: "",
-            })
+            });
             // clear all errors when enabling or disabling input group
             setErrors({
                 username: errors.username,
@@ -107,7 +106,6 @@ let UpdateUserInfo = (props) => {
         // close modal by calling onHide func provided by props
         props.onHide();
     };
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -139,43 +137,46 @@ let UpdateUserInfo = (props) => {
         formData.email = props.email;
 
         // handle empty passed form data
-        
 
         // ensure both passwords are the same before update
         if (formData.password === formData.confirmPassword) {
-            fetch("https://chocolate-vista.freewebhostmost.com/api/user/updateUser.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data.message);
+            fetch(
+                "https://chocolate-vista.freewebhostmost.com/api/user/updateUser.php",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data.message);
 
-                // update logged in user data
-                const updatedUserData = {
-                    userID: userData.userID,
-                    imgUrl: userData.imgUrl,
-                    email: userData.email,
-                    isLoggedIn: true,
-                };
-                // only update username if not empty
-                formData.username !== "" ? updatedUserData.username = formData.username : updatedUserData.username = userData.username;
-                setUserData(updatedUserData);
+                    // update logged in user data
+                    const updatedUserData = {
+                        userID: userData.userID,
+                        imgUrl: userData.imgUrl,
+                        email: userData.email,
+                        isLoggedIn: true,
+                    };
+                    // only update username if not empty
+                    formData.username !== ""
+                        ? (updatedUserData.username = formData.username)
+                        : (updatedUserData.username = userData.username);
+                    setUserData(updatedUserData);
 
-                // close modal HERE
-                handleCloseModal();
+                    // close modal HERE
+                    handleCloseModal();
 
-                // notify user details updated successfully
-                CustomToast("Details Updated Successfully", "success");
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
-        }
-        else {
+                    // notify user details updated successfully
+                    CustomToast("Details Updated Successfully", "success");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        } else {
             // notify user passwords don't match
             CustomToast("Passwords Do Not Match", "warning");
         }
@@ -207,15 +208,19 @@ let UpdateUserInfo = (props) => {
                     label="New Username"
                     className="mb-3"
                 >
-                    <Form.Control 
-                        type="text" 
+                    <Form.Control
+                        type="text"
                         name="username"
                         value={formData.username}
                         onChange={handleFormChange}
                         placeholder="Username"
                         disabled={usernameIsLocked}
                     />
-                    {errors.username && <Form.Text className="text-danger">{errors.username}</Form.Text>}
+                    {errors.username && (
+                        <Form.Text className="text-danger">
+                            {errors.username}
+                        </Form.Text>
+                    )}
                 </FloatingLabel>
 
                 {/* passwords */}
@@ -225,42 +230,50 @@ let UpdateUserInfo = (props) => {
                     label="Check this switch"
                     onChange={() => handleCheckChange("password")}
                 />
-                <FloatingLabel 
-                    controlId="floatingPassword" 
+                <FloatingLabel
+                    controlId="floatingPassword"
                     label="New Password"
                     className="mb-3"
                 >
-                    <Form.Control 
-                        type="password" 
+                    <Form.Control
+                        type="password"
                         name="password"
                         value={formData.password}
                         onChange={handleFormChange}
                         placeholder="Password"
                         disabled={passwordIsLocked}
                     />
-                    {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
+                    {errors.password && (
+                        <Form.Text className="text-danger">
+                            {errors.password}
+                        </Form.Text>
+                    )}
                 </FloatingLabel>
 
-                <FloatingLabel 
-                    controlId="floatingPasswordConfirm" 
+                <FloatingLabel
+                    controlId="floatingPasswordConfirm"
                     label="Confirm Password"
                     className="mb-3"
                 >
-                    <Form.Control 
-                        type="password" 
+                    <Form.Control
+                        type="password"
                         name="confirmPassword"
                         value={formData.confirmPassword}
                         onChange={handleFormChange}
                         placeholder="Password"
                         disabled={passwordIsLocked}
                     />
-                    {errors.confirmPassword && <Form.Text className="text-danger">{errors.confirmPassword}</Form.Text>}
+                    {errors.confirmPassword && (
+                        <Form.Text className="text-danger">
+                            {errors.confirmPassword}
+                        </Form.Text>
+                    )}
                 </FloatingLabel>
             </Modal.Body>
             <Modal.Footer>
                 <Link to="/profile">
-                    <Button 
-                        onClick={handleSubmit} 
+                    <Button
+                        onClick={handleSubmit}
                         disabled={passwordIsLocked && usernameIsLocked}
                     >
                         {passwordIsLocked && usernameIsLocked ? (

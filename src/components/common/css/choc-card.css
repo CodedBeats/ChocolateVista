@@ -53,8 +53,32 @@
 .name-fave-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-top: 5px;
 }
 .name-fave-container > .name {
     color: black;
+}
+
+
+/************************************************************************/
+/* Media query for tablets */
+@media only screen and (min-width: 769px) and (max-width: 989px) {
+    .choc-card-container {
+        width: 10rem;
+    }
+    .choc-img {
+        height: 150px;
+    }
+}
+
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+    .choc-card-container {
+        width: 10rem;
+    }
+    .choc-img {
+        height: 150px;
+    }
 }

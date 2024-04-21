@@ -31,14 +31,14 @@ let AdditionalInformation = (props) => {
         <div className="expiration-label additional-info-label">Avg time until expiration</div>
         <div className="origin-label additional-info-label">Origin</div>
         <div className="certifications-label additional-info-label">Certifications</div>
-        <div className="weight-value">{props.chocolate.weight}</div>
-        <div className="allergen-value">{props.chocolate.allergenInformation}</div>
-        <div className="ingredients-value"><ul className="additionsal-info-list">{listIngredients}</ul></div>
-        <div className="flavour-value"><ul className="additionsal-info-list">{listFlavors}</ul></div>
-        <div className="packaging-value"><ul className="additionsal-info-list">{listPackaging}</ul></div>
-        <div className="expiration-value">{props.chocolate.expirationTime}</div>
-        <div className="origin-value">{props.chocolate.origin}</div>
-        <div className="certifications-value">{props.chocolate.certifications}</div>
+        <div className="weight-value additional-info-value">{props.chocolate.weight}</div>
+        <div className="allergen-value additional-info-value">{props.chocolate.allergenInformation}</div>
+        <div className="ingredients-value additional-info-value"><ul className="additionsal-info-list">{listIngredients}</ul></div>
+        <div className="flavour-value additional-info-value"><ul className="additionsal-info-list">{listFlavors}</ul></div>
+        <div className="packaging-value additional-info-value"><ul className="additionsal-info-list">{listPackaging}</ul></div>
+        <div className="expiration-value additional-info-value">{props.chocolate.expirationTime}</div>
+        <div className="origin-value additional-info-value">{props.chocolate.origin}</div>
+        <div className="certifications-value additional-info-value">{props.chocolate.certifications}</div>
         </>
     );
 }

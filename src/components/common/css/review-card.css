@@ -8,6 +8,7 @@
     grid-template-areas:
         "review-user-img-container review-title"
         "review-user-img-container review-text";
+    overflow-wrap: anywhere;
 }
 .review-card-container * {
     background-color: transparent;

@@ -21,7 +21,7 @@
     grid-template-areas:
         "filters-container-title filters-container reset-filters-btn"
         "filters-container-title chocolates-found reset-filters-btn";
-    margin: 0 20%;
+    margin: 0 10%;
     padding: 0.5% 2%;
     background-color: #eec092;
     border-radius: 20px;
@@ -60,4 +60,47 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+
+
+/************************************************************************/
+/* Media query for tablets */
+@media only screen and (min-width: 769px) and (max-width: 989px) {
+    .filters-container-wrapper {
+        grid-template-rows: 3fr 1fr;
+        justify-items: center;
+    }
+    .filters-container-title {
+        justify-self: center;
+    }
+    .filters {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+    .reset-filters-btn {
+        width: 100%;
+    }
+}
+
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+    .filters-container-wrapper {
+        grid-template-rows: 3fr 1fr;
+        justify-items: center;
+    }
+    .filters-container-title {
+        justify-self: center;
+    }
+    .filters {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+    .reset-filters-btn {
+        width: 100%;
+    }
 }

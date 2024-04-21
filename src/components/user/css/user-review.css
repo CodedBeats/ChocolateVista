@@ -20,6 +20,15 @@
     text-decoration: none;
     color: black;
 }
+.user-review-card-link .review-card-container {
+    row-gap: 10px;
+    grid-template-areas:
+        "review-user-img-container review-title"
+        "review-text review-text";
+}
+.user-review-card-link .review-card-container .review-title {
+    align-self: center;
+}
 
 .user-review-cards-container .user-review-card:nth-child(odd) {
     background-color: rgb(241, 210, 175);
@@ -31,4 +40,21 @@
     margin-top: 10px;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+
+/************************************************************************/
+/* Media query for tablets */
+@media only screen and (min-width: 769px) and (max-width: 989px) {
+    .user-review-card-link .review-card-container {
+        display: inline-block;
+    }
+}
+
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+    .user-review-card-link .review-card-container {
+        display: inline-block;
+    }
 }
