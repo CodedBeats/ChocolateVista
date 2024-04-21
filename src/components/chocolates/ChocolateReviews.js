@@ -1,21 +1,22 @@
 // dependencies
 import { useState, useEffect, useContext } from "react";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import Form from "react-bootstrap/Form";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import Form from 'react-bootstrap/Form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 // components
-import UserContext from "../../UserContext";
+import UserContext from '../../UserContext';
 import ReviewCard from "../common/ReviewCard";
 import CustomToast from "../common/CustomToast";
 
 // style
 import "./css/chocolate-review.css";
 
+
 const ChocolateReviews = (props) => {
-    const { userData: user } = useContext(UserContext);
+    const {userData: user} = useContext(UserContext);
     const [reviews, setReviews] = useState([]);
     const [noReviewsDisplay, setNoReviewsDisplay] = useState(false);
     const [creatingReview, setCreatingReview] = useState(false);
@@ -38,36 +39,36 @@ const ChocolateReviews = (props) => {
 
             try {
                 const response = await fetch(
-                    "https://chocolate-vista.freewebhostmost.com/api/review/getChocolateReviews.php",
+                    "http://localhost/chocolatevista_api/review/getChocolateReviews.php",
                     {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ chocID: props.chocID }),
+                        body: JSON.stringify({ chocID: props.chocID })
                     }
                 );
 
                 if (!response.ok) {
-                    throw new Error("Failed to fetch data");
+                    throw new Error('Failed to fetch data');
                 }
 
                 const jsonData = await response.json();
 
                 if (jsonData.success) {
                     // read reviews data
-                    const fetchedReviews = jsonData.reviewsData.map(
-                        (reviewData) => {
-                            const [reviewID, text, imgUrl, name] = reviewData;
-                            return { reviewID, text, imgUrl, name };
-                        }
-                    );
+                    const fetchedReviews = jsonData.reviewsData.map(reviewData => {
+                        const [reviewID, text, imgUrl, name] = reviewData;
+                        return { reviewID, text, imgUrl, name };
+                    });
                     // update the reviews array with fetchedReviews
                     setReviews(fetchedReviews);
                     setNoReviewsDisplay(false);
-                } else {
+                }
+                else {
                     setNoReviewsDisplay(true);
                 }
+                
             } catch (error) {
                 setError(error.message);
             }
@@ -76,30 +77,32 @@ const ChocolateReviews = (props) => {
         };
 
         fetchData();
+        
     }, [props.chocID, reviewAdded, reviewUpdated, reviewRemoved]);
 
+
     const toggleCreateReview = () => {
-        setIsOpen((prevState) => !prevState);
-        setCreatingReview((prevState) => !prevState);
+        setIsOpen(prevState => !prevState);
+        setCreatingReview(prevState => !prevState);
         setEditingReview(false);
         setCurrentlyEditing([]);
         setInputText("");
-    };
+    }
 
     const handleInputTextChange = (e) => {
         let filteredText = e.target.value;
         // get blacklist from .env, this way you don't have to see the words :)
-        const blacklist = process.env.REACT_APP_BLACKLIST.split(",");
-
+        const blacklist = process.env.REACT_APP_BLACKLIST.split(',');
+    
         // check if input text contains any word from blacklist
         blacklist.forEach((badWord) => {
             // regex to match bad word globally
-            const regex = new RegExp(badWord.trim(), "gi");
+            const regex = new RegExp(badWord.trim(), 'gi');
             filteredText = filteredText.replace(regex, "");
         });
-
+    
         setInputText(filteredText);
-
+    
         // clear error message when user starts typing
         setInputError("");
     };
@@ -111,9 +114,7 @@ const ChocolateReviews = (props) => {
             return;
         }
 
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/review/addReview.php",
-            {
+        fetch("http://localhost/chocolatevista_api/review/addReview.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -121,54 +122,50 @@ const ChocolateReviews = (props) => {
                 body: JSON.stringify({
                     userID: user.userID,
                     chocID: props.chocID,
-                    reviewText: inputText,
+                    reviewText: inputText
                 }),
-            }
-        )
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);
-
-                setIsOpen((prevState) => !prevState);
-                setCreatingReview((prevState) => !prevState);
-                setReviewAdded((prevState) => !prevState);
+                
+                setIsOpen(prevState => !prevState);
+                setCreatingReview(prevState => !prevState);
+                setReviewAdded(prevState => !prevState);
                 // clear input and error message when review is successfully submitted
                 setInputText("");
                 setInputError("");
 
                 // notify user successful review create
-                CustomToast("Review Created Successfully", "success");
+                CustomToast("Review Created Successfully", "success"); 
             })
             .catch((error) => {
                 console.error("Error:", error);
             });
-    };
+    }
 
     const handleDelete = (reviewID) => {
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/review/deleteReview.php",
-            {
+        fetch("http://localhost/chocolatevista_api/review/deleteReview.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    reviewID: reviewID,
+                    reviewID: reviewID
                 }),
-            }
-        )
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);
-                setReviewRemoved((prevState) => !prevState);
+                setReviewRemoved(prevState => !prevState);
 
                 // notify user successful review delete
-                CustomToast("Review Deleted Successfully", "success");
+                CustomToast("Review Deleted Successfully", "success"); 
             })
             .catch((error) => {
                 console.error("Error:", error);
             });
-    };
+    }
 
     const handleEdit = (reviewID, currentText) => {
         setIsOpen(<FontAwesomeIcon icon={faArrowUp} />);
@@ -181,7 +178,7 @@ const ChocolateReviews = (props) => {
                 ? prevEditing.filter((editingId) => editingId !== reviewID)
                 : [...prevEditing, reviewID];
         });
-    };
+    }
 
     const handleEditSubmit = () => {
         // tell user to enter text
@@ -190,130 +187,94 @@ const ChocolateReviews = (props) => {
             return;
         }
 
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/review/editReview.php",
-            {
+        fetch("http://localhost/chocolatevista_api/review/editReview.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     reviewID: editReviewID,
-                    inputText: inputText,
+                    inputText: inputText
                 }),
-            }
-        )
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);
 
-                setIsOpen((prevState) => !prevState);
-                setCreatingReview((prevState) => !prevState);
-                setReviewUpdated((prevState) => !prevState);
+                setIsOpen(prevState => !prevState);
+                setCreatingReview(prevState => !prevState);
+                setReviewUpdated(prevState => !prevState);
                 setCurrentlyEditing([]);
                 // clear input and error message when review is successfully submitted
                 setInputText("");
                 setInputError("");
 
                 // notify user successful review update
-                CustomToast("Review Updated Successfully", "success");
+                CustomToast("Review Updated Successfully", "success"); 
             })
             .catch((error) => {
                 console.error("Error:", error);
             });
-    };
+    }
+
 
     return (
         <div>
-            {user.isLoggedIn && (
+            { user.isLoggedIn &&
                 <div className="create-review-container">
-                    <button
-                        onClick={toggleCreateReview}
-                        className="changing-review-btn"
-                    >
+                    <button onClick={toggleCreateReview} className="changing-review-btn">
                         {!editingReview ? "Create" : "Update"} Review&nbsp;
-                        {isOpen ? (
-                            <FontAwesomeIcon icon={faArrowUp} />
-                        ) : (
-                            <FontAwesomeIcon icon={faArrowDown} />
-                        )}
+                        {isOpen ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}
                     </button>
                     {/* only show on create click */}
-                    {creatingReview && (
+                    {creatingReview && 
                         <div className="choc-review-card-create-container">
                             <div className="create-sect-left">
                                 <div className="review-user-img-container">
-                                    <Image
-                                        src={user.imgUrl}
-                                        alt="Logo"
-                                        className="review-user-img"
-                                        rounded
-                                    />
+                                    <Image src={user.imgUrl} alt="Logo" className="review-user-img" rounded />
                                 </div>
-                                <div className="review-title">
-                                    {user.username}
-                                </div>
-                                {!editingReview ? (
-                                    <Button
-                                        variant="success"
-                                        onClick={handleReviewSubmit}
-                                    >
-                                        Create
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        variant="success"
-                                        onClick={handleEditSubmit}
-                                    >
-                                        Update
-                                    </Button>
-                                )}
+                                <div className="review-title">{user.username}</div>
+                                { !editingReview ?
+                                    <Button variant="success" onClick={handleReviewSubmit}>Create</Button>
+                                :
+                                    <Button variant="success" onClick={handleEditSubmit}>Update</Button>
+                                }
                             </div>
                             <div className="choc-review-text">
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Control
-                                        as="textarea"
-                                        rows={3}
-                                        value={inputText}
-                                        onChange={handleInputTextChange}
-                                    />
-                                    {inputError && (
-                                        <Form.Text className="text-danger">
-                                            {inputError}
-                                        </Form.Text>
-                                    )}
-                                </Form.Group>
+                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Control 
+                                as="textarea" 
+                                rows={3} 
+                                value={inputText} 
+                                onChange={handleInputTextChange} 
+                            />
+                            {inputError && <Form.Text className="text-danger">{inputError}</Form.Text>}
+                            </Form.Group>
                             </div>
                         </div>
-                    )}
+                    }
+                </div>
+            }
+            <div className="chocolate-review-cards-container">
+            {!noReviewsDisplay ? (
+                reviews.map((review, index) => (
+                    <div key={index} className="chocolate-review-card">
+                        <ReviewCard 
+                            review={review} 
+                            chocolateReviews={true}
+                            currentlyEditing={currentlyEditing.includes(review.reviewID)}
+                            canEdit={review.name === user.username ? true : false} 
+                            canOnlyDelete={false}
+                            onClickEdit={(id) => handleEdit(id, review.text)} 
+                            onClickDelete={(id) => handleDelete(id)} 
+                        />
+                    </div>
+                ))
+            ) : (
+                <div className="no-reviews-title">
+                    This chocolate currently has no reviews
                 </div>
             )}
-            <div className="chocolate-review-cards-container">
-                {!noReviewsDisplay ? (
-                    reviews.map((review, index) => (
-                        <div key={index} className="chocolate-review-card">
-                            <ReviewCard
-                                review={review}
-                                chocolateReviews={true}
-                                currentlyEditing={currentlyEditing.includes(
-                                    review.reviewID
-                                )}
-                                canEdit={
-                                    review.name === user.username ? true : false
-                                }
-                                canOnlyDelete={false}
-                                onClickEdit={(id) =>
-                                    handleEdit(id, review.text)
-                                }
-                                onClickDelete={(id) => handleDelete(id)}
-                            />
-                        </div>
-                    ))
-                ) : (
-                    <div className="no-reviews-title">
-                        This chocolate currently has no reviews
-                    </div>
-                )}
             </div>
         </div>
     );

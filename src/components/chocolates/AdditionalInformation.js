@@ -22,7 +22,6 @@ let AdditionalInformation = (props) => {
     return (
         <>
         <div className="price-label additional-info-label">Price</div>
-        <div className="price-value">{props.chocolate.price}</div>
         <div className="weight-label additional-info-label">Weight</div>
         <div className="allergen-label additional-info-label">Allergen Information</div>
         <div className="ingredients-label additional-info-label">Ingredients</div>
@@ -31,6 +30,7 @@ let AdditionalInformation = (props) => {
         <div className="expiration-label additional-info-label">Avg time until expiration</div>
         <div className="origin-label additional-info-label">Origin</div>
         <div className="certifications-label additional-info-label">Certifications</div>
+        <div className="price-value additional-info-value">{props.chocolate.price}</div>
         <div className="weight-value additional-info-value">{props.chocolate.weight}</div>
         <div className="allergen-value additional-info-value">{props.chocolate.allergenInformation}</div>
         <div className="ingredients-value additional-info-value"><ul className="additionsal-info-list">{listIngredients}</ul></div>

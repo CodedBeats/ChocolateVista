@@ -65,3 +65,18 @@
     border: 3px solid rgb(0, 0, 0);
     color: black;
 }
+
+
+/************************************************************************/
+/* Media query for tablets */
+@media only screen and (min-width: 769px) and (max-width: 989px) {
+    
+}
+
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+    .no-reviews-title {
+        font-size: 0.9em;
+    }
+}

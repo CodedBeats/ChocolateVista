@@ -54,6 +54,9 @@ const NavbarComponent = () => {
             </Nav>
             <Navbar.Collapse id="basic-navbar-nav" className="nav-right">
                 <Nav className="sidebar">
+                    <Nav className="mr-auto sidebar-search">
+                        <Search />
+                    </Nav>
                     <Link to="/chocolates" className="nav-link">
                         Chocolates
                     </Link>

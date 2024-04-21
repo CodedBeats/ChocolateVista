@@ -1,7 +1,6 @@
 .profile-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    /* grid-template-rows: 1fr 1fr; */
     gap: 2% 2%;
     grid-auto-flow: row;
     grid-template-areas:
@@ -35,4 +34,27 @@
     align-self: start;
     grid-area: favorites-container;
     width: 100%;
+}
+
+
+/************************************************************************/
+/* Media query for tablets */
+@media only screen and (min-width: 769px) and (max-width: 989px) {
+    
+}
+
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+    .profile-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2% 2%;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "user-info-container"
+            "reviews-container"
+            "favorites-container";
+        margin: 40px;
+    }
 }
