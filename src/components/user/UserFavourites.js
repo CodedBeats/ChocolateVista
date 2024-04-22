@@ -100,7 +100,7 @@ let UserFavourites = () => {
         <div className="user-favourites">
             <span className="user-favourites-title">Your Favourites</span>
             <div className="favourites-cards-container">
-                {true ? (
+                {!noChocolatesDisplay ? (
                     <div className="favourites-cards">
                         {chocolates.map((chocolate, index) => (
                             <div key={index}>
