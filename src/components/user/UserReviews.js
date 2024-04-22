@@ -118,7 +118,7 @@ let UserReviews = () => {
                         );
                     })
                 ) : (
-                    <div>You currently have no reviews</div>
+                    <div className="user-no-reviews-text">You currently have no reviews</div>
                 )}
             </div>
         </div>

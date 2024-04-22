@@ -42,6 +42,10 @@
     border-radius: 10px;
 }
 
+.user-no-reviews-text {
+    text-align: center;
+}
+
 
 /************************************************************************/
 /* Media query for tablets */
