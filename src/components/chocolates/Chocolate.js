@@ -169,6 +169,7 @@ let Chocolate = () => {
                                     isFavorited={isFavorited}
                                     userID={user.userID}
                                     chocolateID={chocolate.chocID}
+                                    static={user ? false : true}
                                 />
                             </div>
                         </div>
