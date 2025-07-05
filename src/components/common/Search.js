@@ -27,16 +27,13 @@ const Search = () => {
         const newValue = e.target.value;
         setSearchQuery(newValue);
 
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/chocolate/searchChocolate.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ search: newValue }),
-            }
-        )
+        fetch("http://localhost/server/chocolate/searchChocolate.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ search: newValue }),
+        })
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {

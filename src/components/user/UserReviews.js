@@ -27,7 +27,7 @@ let UserReviews = () => {
 
             try {
                 const response = await fetch(
-                    "https://chocolate-vista.freewebhostmost.com/api/review/getUserReviews.php",
+                    "http://localhost/server/review/getUserReviews.php",
                     {
                         method: "POST",
                         headers: {
@@ -69,18 +69,15 @@ let UserReviews = () => {
     }, [reviewUpdated, reviewRemoved]);
 
     const handleDelete = (reviewID) => {
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/review/deleteReview.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    reviewID: reviewID,
-                }),
-            }
-        )
+        fetch("http://localhost/server/review/deleteReview.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                reviewID: reviewID,
+            }),
+        })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);
@@ -118,7 +115,9 @@ let UserReviews = () => {
                         );
                     })
                 ) : (
-                    <div className="user-no-reviews-text">You currently have no reviews</div>
+                    <div className="user-no-reviews-text">
+                        You currently have no reviews
+                    </div>
                 )}
             </div>
         </div>

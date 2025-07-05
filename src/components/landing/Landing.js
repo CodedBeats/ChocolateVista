@@ -24,10 +24,7 @@ let Landing = () => {
         data: chocolatesData,
         isPending,
         error,
-    } = useFetch(
-        "https://chocolate-vista.freewebhostmost.com/api/chocolate/getRandom.php",
-        "POST"
-    );
+    } = useFetch("http://localhost/server/chocolate/getRandom.php", "POST");
 
     // imgs for carousel
     const carouselImage = [
@@ -57,7 +54,7 @@ let Landing = () => {
             // check favorite status for each chocolate
             fetchedChocolates.forEach((chocolate) => {
                 fetch(
-                    "https://chocolate-vista.freewebhostmost.com/api/favourite/getIsUserFavourite.php",
+                    "http://localhost/server/favourite/getIsUserFavourite.php",
                     {
                         method: "POST",
                         headers: {

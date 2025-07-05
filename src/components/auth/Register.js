@@ -65,16 +65,13 @@ let RegisterForm = () => {
 
     // login user
     const getUserData = () => {
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/user/getUserByEmail.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            }
-        )
+        fetch("http://localhost/server/user/getUserByEmail.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
@@ -126,16 +123,13 @@ let RegisterForm = () => {
             return;
         }
 
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/auth/registerFormSubmit.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            }
-        )
+        fetch("http://localhost/server/auth/registerFormSubmit.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {

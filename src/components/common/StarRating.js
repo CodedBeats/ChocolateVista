@@ -25,19 +25,16 @@ const StarRating = (props) => {
         );
 
         // update choc's rating
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/chocolate/updateRating.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    rating: newRating,
-                    chocID: props.id,
-                }),
-            }
-        )
+        fetch("http://localhost/server/chocolate/updateRating.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                rating: newRating,
+                chocID: props.id,
+            }),
+        })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);

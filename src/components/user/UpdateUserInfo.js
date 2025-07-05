@@ -140,16 +140,13 @@ let UpdateUserInfo = (props) => {
 
         // ensure both passwords are the same before update
         if (formData.password === formData.confirmPassword) {
-            fetch(
-                "https://chocolate-vista.freewebhostmost.com/api/user/updateUser.php",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                }
-            )
+            fetch("http://localhost/server/user/updateUser.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data.message);

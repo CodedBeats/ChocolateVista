@@ -34,7 +34,7 @@ let Chocolates = () => {
         isPending,
         error,
     } = useFetch(
-        "https://chocolate-vista.freewebhostmost.com/api/chocolate/getAllChocolates.php",
+        "http://localhost/server/chocolate/getAllChocolates.php",
         "POST",
         filterValues
     );
@@ -75,7 +75,7 @@ let Chocolates = () => {
                 // check favorite status for each chocolate
                 fetchedChocolates.forEach((chocolate) => {
                     fetch(
-                        "https://chocolate-vista.freewebhostmost.com/api/favourite/getIsUserFavourite.php",
+                        "http://localhost/server/favourite/getIsUserFavourite.php",
                         {
                             method: "POST",
                             headers: {

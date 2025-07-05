@@ -64,7 +64,7 @@ let Chocolate = () => {
 
             try {
                 const response = await fetch(
-                    "https://chocolate-vista.freewebhostmost.com/api/chocolate/getChocolate.php",
+                    "http://localhost/server/chocolate/getChocolate.php",
                     {
                         method: "POST",
                         headers: {
@@ -118,7 +118,7 @@ let Chocolate = () => {
 
                 // check if chocolate is favorited
                 const isFavResponse = await fetch(
-                    "https://chocolate-vista.freewebhostmost.com/api/favourite/getIsUserFavourite.php",
+                    "http://localhost/server/favourite/getIsUserFavourite.php",
                     {
                         method: "POST",
                         headers: {

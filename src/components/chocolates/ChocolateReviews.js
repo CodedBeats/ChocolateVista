@@ -38,7 +38,7 @@ const ChocolateReviews = (props) => {
 
             try {
                 const response = await fetch(
-                    "https://chocolate-vista.freewebhostmost.com/api/review/getChocolateReviews.php",
+                    "http://localhost/server/review/getChocolateReviews.php",
                     {
                         method: "POST",
                         headers: {
@@ -111,20 +111,17 @@ const ChocolateReviews = (props) => {
             return;
         }
 
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/review/addReview.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userID: user.userID,
-                    chocID: props.chocID,
-                    reviewText: inputText,
-                }),
-            }
-        )
+        fetch("http://localhost/server/review/addReview.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userID: user.userID,
+                chocID: props.chocID,
+                reviewText: inputText,
+            }),
+        })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);
@@ -145,18 +142,15 @@ const ChocolateReviews = (props) => {
     };
 
     const handleDelete = (reviewID) => {
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/review/deleteReview.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    reviewID: reviewID,
-                }),
-            }
-        )
+        fetch("http://localhost/server/review/deleteReview.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                reviewID: reviewID,
+            }),
+        })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);
@@ -190,19 +184,16 @@ const ChocolateReviews = (props) => {
             return;
         }
 
-        fetch(
-            "https://chocolate-vista.freewebhostmost.com/api/review/editReview.php",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    reviewID: editReviewID,
-                    inputText: inputText,
-                }),
-            }
-        )
+        fetch("http://localhost/server/review/editReview.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                reviewID: editReviewID,
+                inputText: inputText,
+            }),
+        })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.message);

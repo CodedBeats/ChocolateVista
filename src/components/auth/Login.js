@@ -62,7 +62,7 @@ let LoginForm = () => {
             return;
         }
 
-        fetch("https://chocolate-vista.freewebhostmost.com/api/auth/loginFormSubmit.php", {
+        fetch("http://localhost/server/auth/loginFormSubmit.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
